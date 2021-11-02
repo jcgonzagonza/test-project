@@ -9,7 +9,6 @@ services:
     depends_on:
       - db
     environment:
-      - PORT=3000
       - ENVIRONMENT=DEV
       - NODE_ENV=production
       - PGHOST=db
@@ -25,6 +24,7 @@ services:
     environment:
       - PGHOST=db
       - PGUSER=postgres
+      - PGPASSWORD=postgres
       - NODE_ENV=test
     volumes:
       - $PWD/app:/home/node/app
@@ -35,3 +35,9 @@ services:
     image: postgres:12.1
     ports:
       - '5400:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=test_project_dev
+    volumes:
+      - /var/run/postgresql:/var/run/postgresql

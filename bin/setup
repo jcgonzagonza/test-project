@@ -2,10 +2,10 @@
 
 set -e
 
-if [[ -z $(psql -h localhost -p 5400 -U postgres -Atqc '\list test_project_dev' postgres) ]]; then
+if [[ -z $(psql -h localhost -p 5432 -U postgres -Atqc '\list test_project_dev' postgres) ]]; then
   createdb test_project_dev
 fi
-if [[ -z $(psql -h localhost -p 5400 -U postgres -Atqc '\list test_project_test' postgres) ]]; then
+if [[ -z $(psql -h localhost -p 5432 -U postgres -Atqc '\list test_project_test' postgres) ]]; then
   createdb test_project_test
 fi
 
@@ -17,6 +17,6 @@ if [ ! -f .env ]; then
   cp .env.docker .env
 fi
 
-npm run db:migrate
+NODE_ENV=development npm run db:migrate
 npm run db:seed
 NODE_ENV=test npm run db:migrate

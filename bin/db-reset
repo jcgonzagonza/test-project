@@ -10,13 +10,14 @@ until pg_isready || [ $count -gt 10 ]; do
   sleep 1
 done
 
+
 if [[ "$NODE_ENV" == 'test' ]]; then
   db_name='test_project_test'
 else
   db_name='test_project_dev'
 fi
 
-echo "*** Resetting DB: ${db_name} ***"
+echo "*** Resetting DB: ${db_name} ${NODE_ENV}***"
 
 psql -c "DROP DATABASE IF EXISTS $db_name"
 psql -c "CREATE DATABASE $db_name"
