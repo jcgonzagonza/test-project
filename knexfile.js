@@ -7,6 +7,7 @@ module.exports = {
     client: 'pg',
     connection: {
       database: 'test_project_dev',
+      host: '127.0.0.1',
       user: nconf.get('DB_USER'),
       password: nconf.get('DB_PASSWORD'),
       port: nconf.get('DB_PORT'),

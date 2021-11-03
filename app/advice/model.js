@@ -1,4 +1,7 @@
 import { Model } from 'objection';
+const { db } = require('../../db/init');
+
+Model.knex(db);
 
 class Advice extends Model {
   $beforeUpdate() {
